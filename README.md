@@ -1,3 +1,17 @@
+# Changes in the forks
+
+Optionally skips caching to make hotReloading work. Add this to jspm.config.js:
+
+    browserConfig: {
+      ngTemplatePlugin: {
+        skipCache: true
+      }
+    },
+
+
+`jspm install ng-template=github:jussiry/plugin-ng-template@master`
+
+
 # plugin-ng-template
 [![NPM](https://img.shields.io/npm/v/plugin-ng-template.svg)](https://www.npmjs.com/package/plugin-ng-template)
 [![Build](https://img.shields.io/travis/jamespamplin/plugin-ng-template.svg)](https://travis-ci.org/jamespamplin/plugin-ng-template)

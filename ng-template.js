@@ -22,13 +22,17 @@ exports.translate = function translate( load ) {
   var baseUrl = typeof System.baseURL === 'string' ? System.baseURL : '',
     options = System.ngTemplatePlugin || {},
     url = resolveUrl( load.address, baseUrl );
+  // console.log('ngTemplate OPTIONS', System.ngTemplatePlugin)
+  // console.log('System.env', System.env)
 
   return 'var url = ' +
     ( options.serverRelative ? "System.baseURL.replace(/^\\w+:\\/\\/[^\\/]*/,'')+" : '' ) +
     "'" + url + "';" +
-    "require('angular').module('ng')" +
-    ".run(['$templateCache', function(c) { c.put(" +
-      "url, '" +
-      santiseSource( load.source ) + "'); }]);" +
+    "if ("+ !options.skipCache +") {" +
+      "require('angular').module('ng')" +
+      ".run(['$templateCache', function(c) { c.put(" +
+        "url, '" +
+        santiseSource( load.source ) + "'); }]);" +
+    "}" +
     'module.exports = { templateUrl: url };';
 };
